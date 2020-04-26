@@ -1,8 +1,16 @@
 meta:
   id: sg
+  title: Disciples 2 scenario file
+  application: Disciples 2 (v3.01)
   file-extension: sg
+  license: GPL-3.0-or-later
+  ks-version: 0.8
   encoding: cp1251
   endian: le
+doc: |
+  SG is used by [Disciples 2](https://en.wikipedia.org/wiki/Disciples_II:_Dark_Prophecy) game for scenario maps and saves.
+  
+  Written and tested by Vladimir Makeev, 2019-2020
 
 seq:
   - id: header
