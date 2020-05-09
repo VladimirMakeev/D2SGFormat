@@ -394,12 +394,10 @@ types:
         type: int_record('RESEAR_T')
       - id: constr_t
         type: int_record('CONSTR_T')
-      - id: spy_1
-        type: string_record('SPY_1')
-      - id: spy_2
-        type: string_record('SPY_2')
-      - id: spy_3
-        type: string_record('SPY_3')
+      - id: spies
+        type: string_record('SPY_N')
+        repeat: expr
+        repeat-expr: 3
       - id: capt_by
         type: string_record('CAPT_BY')
       - id: alwaysai
