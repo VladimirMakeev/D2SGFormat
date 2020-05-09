@@ -310,32 +310,17 @@ types:
         type: int_record('DIFFGAME')
       - id: creator
         type: string_record('CREATOR')
-      - id: player1
-        type: int_record('PLAYER_1')
-      - id: player2
-        type: int_record('PLAYER_2')
-      - id: player3
-        type: int_record('PLAYER_3')
-      - id: player4
-        type: int_record('PLAYER_4')
-      - id: player5
-        type: int_record('PLAYER_5')
-      - id: player6
-        type: int_record('PLAYER_6')
-      - id: player7
-        type: int_record('PLAYER_7')
-      - id: player8
-        type: int_record('PLAYER_8')
-      - id: player9
-        type: int_record('PLAYER_9')
-      - id: player10
-        type: int_record('PLAYER_10')
-      - id: player11
-        type: int_record('PLAYER_11')
-      - id: player12
-        type: int_record('PLAYER_12')
-      - id: player13
-        type: int_record('PLAYER_13')
+      - id: players
+        repeat: expr
+        repeat-expr: 13
+        type:
+          switch-on: _index
+          cases:
+            _: int_record('PLAYER_N')
+            9: int_record('PLAYER_NN')
+            10: int_record('PLAYER_NN')
+            11: int_record('PLAYER_NN')
+            12: int_record('PLAYER_NN')
       - id: sugg_lvl
         type: int_record('SUGG_LVL')
       - id: map_seed
