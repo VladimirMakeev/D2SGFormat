@@ -98,8 +98,15 @@ types:
         repeat-expr: 250
       - id: unknown_padding_size
         type: u4
-      - id: unknown_area2
-        size: size - 2668 - 8
+      - id: total_races
+        type: u4
+        doc: |
+          Total races in scenario, including neutrals.
+          This information is shown in scenario preview.
+      - id: races
+        type: race_info
+        repeat: expr
+        repeat-expr: total_races
       - id: unknown_padding
         type: u1
         repeat: expr
@@ -112,6 +119,13 @@ types:
         type: u2
       - id: unknown
         size: 2725
+  race_info:
+    seq:
+      - id: race_id
+        type: u4
+        doc: Id encoded the same way as in 'scenario_info.player_' fields
+      - id: unknown
+        size: 36
   string_record:
     params:
       - id: name_value
