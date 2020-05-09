@@ -213,6 +213,19 @@ types:
       - id: terminator
         type: u1
     doc: Represents ingame currency
+  position:
+    seq:
+      - id: x
+        type: int_record('POS_X')
+      - id: y
+        type: int_record('POS_Y')
+    doc: Represents map coordinates
+  size:
+    seq:
+      - id: x
+        type: int_record('SIZE_X')
+      - id: y
+        type: int_record('SIZE_Y')
   begobject:
     seq:
       - id: value
@@ -331,14 +344,10 @@ types:
     seq:
       - id: id_mount
         type: int_record('ID_MOUNT')
-      - id: size_x
-        type: int_record('SIZE_X')
-      - id: size_y
-        type: int_record('SIZE_Y')
-      - id: pos_x
-        type: int_record('POS_X')
-      - id: pos_y
-        type: int_record('POS_Y')
+      - id: size
+        type: size
+      - id: position
+        type: position
       - id: image
         type: int_record('IMAGE')
       - id: race
@@ -490,10 +499,8 @@ types:
         type: string_record('SUBRACE')
       - id: stack
         type: string_record('STACK')
-      - id: pos_x
-        type: int_record('POS_X')
-      - id: pos_y
-        type: int_record('POS_Y')
+      - id: position
+        type: position
       - id: group
         type: group
   group:
@@ -561,10 +568,8 @@ types:
         repeat-expr: (count.value)
   plan_entry:
     seq:
-      - id: pos_x
-        type: int_record('POS_X')
-      - id: pos_y
-        type: int_record('POS_Y')
+      - id: position
+        type: position
       - id: element
         type: string_record('ELEMENT')
   midgard_plan:
@@ -595,10 +600,8 @@ types:
         type: string_record('LEADER_ID')
       - id: leader_aliv
         type: bool_record('LEADR_ALIV')
-      - id: pos_x
-        type: int_record('POS_X')
-      - id: pos_y
-        type: int_record('POS_Y')
+      - id: position
+        type: position
       - id: morale
         type: int_record('MORALE')
       - id: move
@@ -724,10 +727,8 @@ types:
         type: int_record('INDEX')
       - id: var
         type: int_record('VAR')
-      - id: pos_x
-        type: int_record('POS_X')
-      - id: pos_y
-        type: int_record('POS_Y')
+      - id: position
+        type: position
   site:
     seq:
       - id: site_id
@@ -740,10 +741,8 @@ types:
         type: string_record('TXT_TITLE')
       - id: txt_desc
         type: string_record('TXT_DESC')
-      - id: pos_x
-        type: int_record('POS_X')
-      - id: pos_y
-        type: int_record('POS_Y')
+      - id: position
+        type: position
       - id: visiter
         type: string_record('VISITER')
       - id: aipriority
@@ -852,10 +851,8 @@ types:
         type: string_record('DESC')
       - id: image
         type: int_record('IMAGE')
-      - id: pos_x
-        type: int_record('POS_X')
-      - id: pos_y
-        type: int_record('POS_Y')
+      - id: position
+        type: position
       - id: cash
         type: string_record('CASH')
       - id: item
@@ -919,10 +916,8 @@ types:
         type: string_record('CRYSTAL_ID')
       - id: reource
         type: int_record('RESOURCE')
-      - id: pos_x
-        type: int_record('POS_X')
-      - id: pos_y
-        type: int_record('POS_Y')
+      - id: position
+        type: position
       - id: aipriority
         type: int_record('AIPRIORITY')
   mid_landmark:
@@ -931,10 +926,8 @@ types:
         type: string_record('LMARK_ID')
       - id: type
         type: string_record('TYPE')
-      - id: pos_x
-        type: int_record('POS_X')
-      - id: pos_y
-        type: int_record('POS_Y')
+      - id: position
+        type: position
       - id: desc_txt
         type: string_record('DESC_TXT')
         if: _root.header.signature == 'D2EESFISIG'
@@ -942,10 +935,8 @@ types:
     seq:
       - id: bag_id
         type: string_record('BAG_ID')
-      - id: pos_x
-        type: int_record('POS_X')
-      - id: pos_y
-        type: int_record('POS_Y')
+      - id: position
+        type: position
       - id: image
         type: int_record('IMAGE')
       - id: aipriority
@@ -960,10 +951,8 @@ types:
     seq:
       - id: loc_id
         type: string_record('LOC_ID')
-      - id: pos_x
-        type: int_record('POS_X')
-      - id: pos_y
-        type: int_record('POS_Y')
+      - id: position
+        type: position
       - id: name_txt
         type: string_record('NAME_TXT')
       - id: radius
@@ -1505,10 +1494,8 @@ types:
     seq:
       - id: tomb_id
         type: string_record('TOMB_ID')
-      - id: pos_x
-        type: int_record('POS_X')
-      - id: pos_y
-        type: int_record('POS_Y')
+      - id: position
+        type: position
       - id: qty_ep
         type: int_record('QTY_EP')
       - id: stack_owner
@@ -1521,10 +1508,8 @@ types:
         type: string_record('STACK_NAME')
   turn_summary_entry_type1:
     seq:
-      - id: pos_x
-        type: int_record('POS_X')
-      - id: pos_y
-        type: int_record('POS_Y')
+      - id: position
+        type: position
       - id: id_player2
         type: string_record('ID_PLAYER2')
       - id: id_stk_a
@@ -1537,20 +1522,16 @@ types:
         type: string_record('STR_STK_D')
   turn_summary_entry_type2:
     seq:
-      - id: pos_x
-        type: int_record('POS_X')
-      - id: pos_y
-        type: int_record('POS_Y')
+      - id: position
+        type: position
       - id: id_stk_d
         type: string_record('ID_STK_D')
       - id: str_stk_d
         type: string_record('STR_STK_D')
   turn_summary_entry_type4:
     seq:
-      - id: pos_x
-        type: int_record('POS_X')
-      - id: pos_y
-        type: int_record('POS_Y')
+      - id: position
+        type: position
   turn_summary_entry:
     seq:
       - id: id_player
@@ -1594,10 +1575,8 @@ types:
         type: string_record('ROD_ID')
       - id: owner
         type: string_record('OWNER')
-      - id: pos_x
-        type: int_record('POS_X')
-      - id: pos_y
-        type: int_record('POS_Y')
+      - id: position
+        type: position
   mid_quest_log_sequence:
     seq:
       - id: id_player
