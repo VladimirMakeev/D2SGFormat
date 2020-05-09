@@ -136,6 +136,7 @@ types:
         size: name_value.length
       - id: length
         type: u4
+        doc: Length of string data, including trailing zero
       - id: string
         type: strz
         size: length
