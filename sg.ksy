@@ -500,30 +500,14 @@ types:
     seq:
       - id: group_id
         type: string_record('GROUP_ID')
-      - id: unit_0
-        type: string_record('UNIT_0')
-      - id: unit_1
-        type: string_record('UNIT_1')
-      - id: unit_2
-        type: string_record('UNIT_2')
-      - id: unit_3
-        type: string_record('UNIT_3')
-      - id: unit_4
-        type: string_record('UNIT_4')
-      - id: unit_5
-        type: string_record('UNIT_5')
-      - id: pos_0
-        type: int_record('POS_0')
-      - id: pos_1
-        type: int_record('POS_1')
-      - id: pos_2
-        type: int_record('POS_2')
-      - id: pos_3
-        type: int_record('POS_3')
-      - id: pos_4
-        type: int_record('POS_4')
-      - id: pos_5
-        type: int_record('POS_5')
+      - id: units
+        type: string_record('UNIT_N')
+        repeat: expr
+        repeat-expr: 6
+      - id: positions
+        type: int_record('POS_N')
+        repeat: expr
+        repeat-expr: 6
   capital:
     seq:
       - id: city
