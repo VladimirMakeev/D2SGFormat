@@ -18,7 +18,7 @@ seq:
   - id: total
     type: int_record('SxxxOBxxxx')
   - id: objects
-    type: object
+    type: scenario_object
     repeat: expr
     repeat-expr: (total.value)
 
@@ -1604,7 +1604,7 @@ types:
         type: mid_quest_log_sequence
         repeat: expr
         repeat-expr: log_count.value
-  object:
+  scenario_object:
     seq:
       - id: what
         type: string_record('WHAT')
