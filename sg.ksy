@@ -366,6 +366,22 @@ types:
         type: string_record('NAME_TXT')
       - id: transf
         type: bool_record('TRANSF')
+      - id: orig_type_id
+        type: string_record('ORIGTYPEID')
+        doc: Id of original unit 'GnnnUUnnnn'
+        if: transf.value == 1
+      - id: keep_hp
+        type: bool_record('KEEP_HP')
+        if: transf.value == 1
+      - id: orig_xp
+        type: int_record('ORIG_XP')
+        if: transf.value == 1
+      - id: hp_before
+        type: int_record('HP_BEFORE')
+        if: transf.value == 1
+      - id: hp_before_max
+        type: int_record('HP_BEF_MAX')
+        if: transf.value == 1
       - id: dynlevel
         type: bool_record('DYNLEVEL')
         if: (_root.header.signature == 'D2EESFISIG')
