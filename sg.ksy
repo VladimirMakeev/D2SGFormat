@@ -360,6 +360,12 @@ types:
         type: mountains_entry
         repeat: expr
         repeat-expr: mountains_count.value
+  mid_player_exmap_record:
+    seq:
+      - id: id
+        type: string_record('EXMAPIDx')
+      - id: turn
+        type: string_record('EXMAPTURNx')
   mid_player:
     seq:
       - id: player_id
@@ -403,23 +409,10 @@ types:
       - id: alwaysai
         type: bool_record('ALWAYSAI')
         if: _root.header.signature == 'D2EESFISIG'
-      - id: exmapid1
-        type: string_record('EXMAPID1')
-        if: _root.header.signature == 'D2EESFISIG'
-      - id: exmapturn1
-        type: string_record('EXMAPTURN1')
-        if: _root.header.signature == 'D2EESFISIG'
-      - id: exmapid2
-        type: string_record('EXMAPID2')
-        if: _root.header.signature == 'D2EESFISIG'
-      - id: exmapturn2
-        type: string_record('EXMAPTURN2')
-        if: _root.header.signature == 'D2EESFISIG'
-      - id: exmapid3
-        type: string_record('EXMAPID3')
-        if: _root.header.signature == 'D2EESFISIG'
-      - id: exmapturn3
-        type: string_record('EXMAPTURN3')
+      - id: exmap_records
+        type: mid_player_exmap_record
+        repeat: expr
+        repeat-expr: 3
         if: _root.header.signature == 'D2EESFISIG'
   mid_unit:
     seq:
