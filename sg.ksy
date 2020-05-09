@@ -160,6 +160,59 @@ types:
         size: name_value.length
       - id: value
         type: u1
+  currency:
+    seq:
+      - id: type
+        type: u1
+      - id: amount_str
+        type: str
+        size: 4
+    instances:
+      amount:
+        value: amount_str.to_i
+    doc: Represents single currency type such as gold or mana
+  bank_record:
+    params:
+      - id: name_value
+        type: str
+    seq:
+      - id: name
+        type: str
+        size: name_value.length
+      - id: length
+        type: u4
+      - id: gold
+        type: currency
+      - id: colon1
+        contents: ':'
+      - id: infernal_mana
+        type: currency
+        doc: Associated with and primarily used by Legions of the Damned
+      - id: colon2
+        contents: ':'
+      - id: life_mana
+        type: currency
+        doc: Associated with and primarily used by Empire
+      - id: colon3
+        contents: ':'
+      - id: death_mana
+        type: currency
+        doc: Associated with and primarily used by Undead Hordes
+      - id: colon4
+        contents: ':'
+      - id: runic_mana
+        type: currency
+        doc: Associated with and primarily used by Mountain Clans
+      - id: colon5
+        contents: ':'
+        if: _root.header.signature == 'D2EESFISIG'
+      - id: grove_mana
+        type: currency
+        if: _root.header.signature == 'D2EESFISIG'
+        doc: Associated with and primarily used by Elven alliance
+      - id: terminator
+        type: u1
+    doc: Represents ingame currency
   begobject:
     seq:
       - id: value
@@ -321,11 +374,11 @@ types:
       - id: qty_breaks
         type: int_record('QTY_BREAKS')
       - id: bank
-        type: string_record('BANK')
+        type: bank_record('BANK')
       - id: is_human
         type: bool_record('IS_HUMAN')
       - id: spell_bank
-        type: string_record('SPELL_BANK')
+        type: bank_record('SPELL_BANK')
       - id: attitude
         type: int_record('ATTITUDE')
       - id: resear_t
