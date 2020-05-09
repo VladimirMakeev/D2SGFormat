@@ -854,7 +854,7 @@ types:
       - id: position
         type: position
       - id: cash
-        type: string_record('CASH')
+        type: bank_record('CASH')
       - id: item
         type: string_record('ITEM')
       - id: looter
