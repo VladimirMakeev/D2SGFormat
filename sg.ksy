@@ -651,6 +651,12 @@ types:
         type: int_record('UNIT_POS')
       - id: modif_id
         type: string_record('MODIF_ID')
+  stack_template_unit_record:
+    seq:
+      - id: unit
+        type: string_record('UNIT_N')
+      - id: level
+        type: int_record('UNIT_N_LVL')
   mid_stack_template:
     seq:
       - id: id
@@ -669,42 +675,14 @@ types:
         type: string_record('SUBRACE')
       - id: order
         type: int_record('ORDER')
-      - id: unit_0
-        type: string_record('UNIT_0')
-      - id: unit_0_lvl
-        type: int_record('UNIT_0_LVL')
-      - id: unit_1
-        type: string_record('UNIT_1')
-      - id: unit_1_lvl
-        type: int_record('UNIT_1_LVL')
-      - id: unit_2
-        type: string_record('UNIT_2')
-      - id: unit_2_lvl
-        type: int_record('UNIT_2_LVL')
-      - id: unit_3
-        type: string_record('UNIT_3')
-      - id: unit_3_lvl
-        type: int_record('UNIT_3_LVL')
-      - id: unit_4
-        type: string_record('UNIT_4')
-      - id: unit_4_lvl
-        type: int_record('UNIT_4_LVL')
-      - id: unit_5
-        type: string_record('UNIT_5')
-      - id: unit_5_lvl
-        type: int_record('UNIT_5_LVL')
-      - id: pos_0
-        type: int_record('POS_0')
-      - id: pos_1
-        type: int_record('POS_1')
-      - id: pos_2
-        type: int_record('POS_2')
-      - id: pos_3
-        type: int_record('POS_3')
-      - id: pos_4
-        type: int_record('POS_4')
-      - id: pos_5
-        type: int_record('POS_5')
+      - id: units
+        type: stack_template_unit_record
+        repeat: expr
+        repeat-expr: 6
+      - id: positions
+        type: int_record('POS_N')
+        repeat: expr
+        repeat-expr: 6
       - id: use_facing
         type: bool_record('USE_FACING')
       - id: facing
