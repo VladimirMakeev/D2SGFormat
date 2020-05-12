@@ -517,7 +517,6 @@ types:
           For each Y position we have an entry with a bitmask
           where each bit corresponds to X position,
           thus defining a fog for a tile.
-        
   midgard_map_fog:
     seq:
       - id: count
@@ -723,18 +722,28 @@ types:
         type: string_record('VISITER')
       - id: aipriority
         type: int_record('AIPRIORITY')
+  site_visitor:
+    seq:
+      - id: site_id
+        type: string_record('SITE_ID')
+      - id: visitor
+        type: string_record('VISITER')
   mid_site_mage:
     seq:
       - id: site
         type: site
-      - id: qty_spell
+      - id: spell_count
         type: int_record('QTY_SPELL')
       - id: spells
         type: string_record('SPELL_ID')
         repeat: expr
-        repeat-expr: qty_spell.value
-      - id: unknown
-        type: int_record('XXXxxxXXXx') # 10
+        repeat-expr: spell_count.value
+      - id: visitor_count
+        type: int_record('SnnnSInnnn')
+      - id: visitors
+        type: site_visitor
+        repeat: expr
+        repeat-expr: visitor_count.value
   mercs_unit_entry:
     seq:
       - id: unit_id
@@ -743,26 +752,20 @@ types:
         type: int_record('UNIT_LEVEL')
       - id: unit_uniq
         type: bool_record('UNIT_UNIQ')
-  mid_site_mercs_visitor_entry:
-    seq:
-      - id: site_id
-        type: string_record('SITE_ID')
-      - id: visitor
-        type: string_record('VISITER')
   mid_site_mercs:
     seq:
       - id: site
         type: site
-      - id: qty_unit
+      - id: unit_count
         type: int_record('QTY_UNIT')
       - id: units
         type: mercs_unit_entry
         repeat: expr
-        repeat-expr: qty_unit.value
+        repeat-expr: unit_count.value
       - id: visitor_count
-        type: int_record('XxxxXXxxxx')
+        type: int_record('SnnnSInnnn')
       - id: visitors
-        type: mid_site_mercs_visitor_entry
+        type: site_visitor
         repeat: expr
         repeat-expr: visitor_count.value
   merchant_item_entry:
@@ -771,12 +774,6 @@ types:
         type: string_record('ITEM_ID')
       - id: item_count
         type: int_record('ITEM_COUNT')
-  merchant_unknown_entry:
-    seq:
-      - id: site_id
-        type: string_record('SITE_ID')
-      - id: visiter
-        type: string_record('VISITER')
   mid_site_merchant:
     seq:
       - id: site
@@ -797,20 +794,20 @@ types:
         type: bool_record('BUY_WAND')
       - id: buy_value
         type: bool_record('BUY_VALUE')
-      - id: qty_item
+      - id: item_count
         type: int_record('QTY_ITEM')
       - id: items
         type: merchant_item_entry
         repeat: expr
-        repeat-expr: qty_item.value
+        repeat-expr: item_count.value
       - id: mission
         type: bool_record('MISSION')
-      - id: unknown_count
-        type: int_record('XxxxXXxxxx')
-      - id: unknown
-        type: merchant_unknown_entry
+      - id: visitor_count
+        type: int_record('SnnnSInnnn')
+      - id: visitors
+        type: site_visitor
         repeat: expr
-        repeat-expr: unknown_count.value
+        repeat-expr: visitor_count.value
   ruin_visiter:
     seq:
       - id: ruin_id
@@ -849,8 +846,12 @@ types:
     seq:
       - id: site
         type: site
-      - id: unknown
-        type: int_record('XXXxxxXXXx')
+      - id: visitor_count
+        type: int_record('SnnnSInnnn')
+      - id: visitors
+        type: site_visitor
+        repeat: expr
+        repeat-expr: visitor_count.value
   mid_village:
     seq:
       - id: city
