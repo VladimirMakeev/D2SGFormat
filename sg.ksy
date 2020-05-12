@@ -1467,14 +1467,8 @@ types:
         type: string_record('BUILD_ID')
         repeat: expr
         repeat-expr: buildings_count.value
-  mid_tomb:
+  mid_tomb_entry:
     seq:
-      - id: tomb_id
-        type: string_record('TOMB_ID')
-      - id: position
-        type: position
-      - id: qty_ep
-        type: int_record('QTY_EP')
       - id: stack_owner
         type: string_record('STACK_OWNR')
       - id: killer
@@ -1483,6 +1477,18 @@ types:
         type: int_record('TURN')
       - id: stack_name
         type: string_record('STACK_NAME')
+  mid_tomb:
+    seq:
+      - id: tomb_id
+        type: string_record('TOMB_ID')
+      - id: position
+        type: position
+      - id: entry_count
+        type: int_record('QTY_EP')
+      - id: entries
+        type: mid_tomb_entry
+        repeat: expr
+        repeat-expr: entry_count.value
   turn_summary_entry_type1:
     seq:
       - id: position
