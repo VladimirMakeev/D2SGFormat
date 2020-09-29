@@ -20,7 +20,7 @@ seq:
   - id: objects
     type: scenario_object
     repeat: expr
-    repeat-expr: (total.value)
+    repeat-expr: total.value
 
 types:
   header:
@@ -42,11 +42,15 @@ types:
         type: u4
       - id: size
         type: u4
-        doc: Is it header size or offset for objects data?
+        doc: |
+          Header size.
+          Can not be greater than 2920 bytes, according to the game code
       - id: unknown1
         contents: [1, 0, 0, 0]
+        doc: Must be 1 according to the game code
       - id: unknown2
         contents: [0x23, 0, 0, 0]
+        doc: Must be 0x23 (35) according to the game code
       - id: unknown3
         contents: [0, 0, 0, 0]
       - id: scenario_id
@@ -54,9 +58,7 @@ types:
         size: 11
       - id: scenario_description
         type: strz
-        size: 255
-      - id: padding
-        contents: [0]
+        size: 256
       - id: designer_name
         type: strz
         size: 21
@@ -67,36 +69,39 @@ types:
           ScenarioEditor always set this to 0 when entering objectives menu
       - id: quest_name
         type: strz
-        size: 65
-      - id: unknown4
-        size: 191
+        size: 256
       - id: map_size
         type: u4
-        doc: This value is shown in preview while selecting map to load
-      - id: unknown5
+        doc: This value is shown in preview while selecting scenario to load
+      - id: difficulty
         type: u4
-      - id: unknown6
+        doc: Difficulty value, same as ID in Ldiff.dbf
+      - id: turn_number
         type: u4
-      - id: unknown7
+      - id: unknown4
         type: u4
       - id: campaign_id
         type: str
-        size: 10
-      - id: unknown8
-        size: 6
-      - id: unknown_name
-        type: str
-        size: 10
-        doc: Default hero name?
-      - id: unknown9
-        size: 1065
+        size: 11
+      - id: unknown5
+        size: 5
+      - id: default_player_name
+        type: strz
+        size: 256
+        doc: Game allows to enter only 15 characters upon starting a scenario
+      - id: race
+        type: u4
+        doc: Race value, same as ID in Lrace.dbf
+      - id: unknown6
+        size: 815
       - id: unknown_data
         type: u4
-      - id: unknown_area
+      - id: prng_values
         type: u4
         repeat: expr
         repeat-expr: 250
-      - id: unknown_padding_size
+        doc: Values used for pseudo-random number generation
+      - id: padding_size
         type: u4
       - id: total_races
         type: u4
@@ -107,10 +112,10 @@ types:
         type: race_info
         repeat: expr
         repeat-expr: total_races
-      - id: unknown_padding
+      - id: padding
         type: u1
         repeat: expr
-        repeat-expr: unknown_padding_size
+        repeat-expr: padding_size
   midfile_header:
     seq:
       - id: zeroes
