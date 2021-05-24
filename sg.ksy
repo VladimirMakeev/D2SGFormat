@@ -1535,6 +1535,20 @@ types:
         type: mid_tomb_entry
         repeat: expr
         repeat-expr: entry_count.value
+  turn_summary_entry_type0:
+    seq:
+      - id: pos_x
+        type: int_record('POS_X')
+      - id: pos_y
+        type: int_record('POS_Y')
+      - id: id_player2
+        type: string_record('ID_PLAYER2')
+      - id: id_spell
+        type: string_record('ID_SPELL')
+      - id: id_stk_d
+        type: string_record('ID_STK_D')
+      - id: str_stk_d
+        type: string_record('STR_STK_D')
   turn_summary_entry_type1:
     seq:
       - id: position
@@ -1571,6 +1585,7 @@ types:
         type:
           switch-on: type.value
           cases:
+            '0': turn_summary_entry_type0
             '1': turn_summary_entry_type1
             '2': turn_summary_entry_type2
             '4': turn_summary_entry_type4
