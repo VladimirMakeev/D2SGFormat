@@ -252,6 +252,24 @@ types:
         type: int_record('XXXxxxXXXx') # 10
       - id: id2
         type: int_record('XXXxxxXXXx') # 10
+  mid_spell_cast_item:
+    seq:
+      - id: player_id
+        type: string_record('PLAYER_ID')
+      - id: origin
+        type: string_record('ORIGIN')
+      - id: turn_stop
+        type: int_record('TURN_STOP')
+  mid_spell_cast:
+    seq:
+      - id: count
+        type: int_record('XXXxxxXXXx')
+      - id: items
+        type: mid_spell_cast_item
+        repeat: expr
+        repeat-expr: count.value
+      - id: unknown
+        type: int_record('XXXxxxXXXx')
   scenario_info:
     seq:
       - id: info_id
@@ -1608,7 +1626,7 @@ types:
             '".?AVCMidPlayer@@"': mid_player
             '".?AVCMidQuestLog@@"': mid_quest_log
             '".?AVCPlayerBuildings@@"': player_buildings
-            '".?AVCMidSpellCast@@"': double_id
+            '".?AVCMidSpellCast@@"': mid_spell_cast
             '".?AVCMidUnit@@"': mid_unit
             '".?AVCMidgardMapBlock@@"': midgard_map_block
             '".?AVCCapital@@"': capital
