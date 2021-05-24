@@ -4,7 +4,7 @@ You can use it to inspect file contents in [browser](https://ide.kaitai.io/), or
 
 ### TODO
 - [x] Fix `Sugested leader level` in header
-- [ ] Fix `AVCMidSpellCast` type
-- [ ] Fix `AVCMidSpellEffects` type
-- [ ] Fix `AVCTurnSummary` type
+- [x] Fix `AVCMidSpellCast` type
+- [x] Fix `AVCMidSpellEffects` type
+- [x] Fix `AVCTurnSummary` type
 - [ ] Define `midfile_header` type
