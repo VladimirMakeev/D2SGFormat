@@ -252,6 +252,26 @@ types:
         type: int_record('XXXxxxXXXx') # 10
       - id: id2
         type: int_record('XXXxxxXXXx') # 10
+  mid_spell_effect_item:
+    seq:
+      - id: unit_id
+        type: string_record('UNIT_ID')
+      - id: origin_id
+        type: string_record('ORIGIN_ID')
+      - id: modif_id
+        type: string_record('MODIF_ID')
+      - id: caster_id
+        type: string_record('CASTER_ID')
+      - id: turn_stop
+        type: int_record('TURN_STOP')
+  mid_spell_effects:
+    seq:
+      - id: count
+        type: int_record('XXXxxxXXXx')
+      - id: items
+        type: mid_spell_effect_item
+        repeat: expr
+        repeat-expr: count.value
   mid_spell_cast_item:
     seq:
       - id: player_id
@@ -1639,7 +1659,7 @@ types:
             '".?AVCMidgardMap@@"': single_id
             '".?AVCMidItem@@"': mid_item
             '".?AVCMidTalismanCharges@@"': mid_talisman_charges
-            '".?AVCMidSpellEffects@@"': single_id
+            '".?AVCMidSpellEffects@@"': mid_spell_effects
             '".?AVCMidSubRace@@"': mid_subrace
             '".?AVCPlayerKnownSpells@@"': player_known_spells
             '".?AVCTurnSummary@@"': turn_summary
