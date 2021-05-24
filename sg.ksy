@@ -83,8 +83,11 @@ types:
       - id: campaign_id
         type: str
         size: 11
+      - id: sugg_lvl
+        type: u4
+        doc: Suggested leader level. Scenario Editor set it to the same value as in 'scenario_info.sugg_lvl'
       - id: unknown5
-        size: 5
+        size: 1
       - id: default_player_name
         type: strz
         size: 256
