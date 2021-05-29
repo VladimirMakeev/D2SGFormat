@@ -1571,6 +1571,7 @@ types:
         type: string_record('ID_STK_D')
       - id: str_stk_d
         type: string_record('STR_STK_D')
+  turn_summary_entry_type3: {}
   turn_summary_entry_type4:
     seq:
       - id: position
@@ -1588,6 +1589,7 @@ types:
             '0': turn_summary_entry_type0
             '1': turn_summary_entry_type1
             '2': turn_summary_entry_type2
+            '3': turn_summary_entry_type3
             '4': turn_summary_entry_type4
   turn_summary:
     seq:
