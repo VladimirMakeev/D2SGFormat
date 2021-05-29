@@ -1541,10 +1541,8 @@ types:
         repeat-expr: entry_count.value
   turn_summary_entry_type0:
     seq:
-      - id: pos_x
-        type: int_record('POS_X')
-      - id: pos_y
-        type: int_record('POS_Y')
+      - id: position
+        type: position
       - id: id_player2
         type: string_record('ID_PLAYER2')
       - id: id_spell
