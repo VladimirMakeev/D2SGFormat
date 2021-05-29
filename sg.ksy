@@ -252,6 +252,10 @@ types:
         type: int_record('XXXxxxXXXx') # 10
       - id: id2
         type: int_record('XXXxxxXXXx') # 10
+  midgard_map:
+    seq:
+      - id: unknown
+        type: int_record('XXXxxxXXXx') # 10      
   mid_spell_effect_item:
     seq:
       - id: unit_id
@@ -1673,7 +1677,7 @@ types:
             '".?AVCMidScenVariables@@"': mid_scen_variables
             '".?AVCMidStack@@"': mid_stack
             '".?AVCMidStackTemplate@@"': mid_stack_template
-            '".?AVCMidgardMap@@"': single_id
+            '".?AVCMidgardMap@@"': midgard_map
             '".?AVCMidItem@@"': mid_item
             '".?AVCMidTalismanCharges@@"': mid_talisman_charges
             '".?AVCMidSpellEffects@@"': mid_spell_effects
