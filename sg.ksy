@@ -83,8 +83,11 @@ types:
       - id: campaign_id
         type: str
         size: 11
+      - id: sugg_lvl
+        type: u4
+        doc: Suggested leader level. Scenario Editor set it to the same value as in 'scenario_info.sugg_lvl'
       - id: unknown5
-        size: 5
+        size: 1
       - id: default_player_name
         type: strz
         size: 256
@@ -249,6 +252,48 @@ types:
         type: int_record('XXXxxxXXXx') # 10
       - id: id2
         type: int_record('XXXxxxXXXx') # 10
+  midgard_map:
+    seq:
+      - id: unknown
+        type: int_record('XXXxxxXXXx') # 10      
+  mid_spell_effect_item:
+    seq:
+      - id: unit_id
+        type: string_record('UNIT_ID')
+      - id: origin_id
+        type: string_record('ORIGIN_ID')
+      - id: modif_id
+        type: string_record('MODIF_ID')
+      - id: caster_id
+        type: string_record('CASTER_ID')
+      - id: turn_stop
+        type: int_record('TURN_STOP')
+  mid_spell_effects:
+    seq:
+      - id: count
+        type: int_record('XXXxxxXXXx')
+      - id: items
+        type: mid_spell_effect_item
+        repeat: expr
+        repeat-expr: count.value
+  mid_spell_cast_item:
+    seq:
+      - id: player_id
+        type: string_record('PLAYER_ID')
+      - id: origin
+        type: string_record('ORIGIN')
+      - id: turn_stop
+        type: int_record('TURN_STOP')
+  mid_spell_cast:
+    seq:
+      - id: count
+        type: int_record('XXXxxxXXXx')
+      - id: items
+        type: mid_spell_cast_item
+        repeat: expr
+        repeat-expr: count.value
+      - id: unknown
+        type: int_record('XXXxxxXXXx')
   scenario_info:
     seq:
       - id: info_id
@@ -1494,6 +1539,18 @@ types:
         type: mid_tomb_entry
         repeat: expr
         repeat-expr: entry_count.value
+  turn_summary_entry_type0:
+    seq:
+      - id: position
+        type: position
+      - id: id_player2
+        type: string_record('ID_PLAYER2')
+      - id: id_spell
+        type: string_record('ID_SPELL')
+      - id: id_stk_d
+        type: string_record('ID_STK_D')
+      - id: str_stk_d
+        type: string_record('STR_STK_D')
   turn_summary_entry_type1:
     seq:
       - id: position
@@ -1516,6 +1573,7 @@ types:
         type: string_record('ID_STK_D')
       - id: str_stk_d
         type: string_record('STR_STK_D')
+  turn_summary_entry_type3: {}
   turn_summary_entry_type4:
     seq:
       - id: position
@@ -1530,8 +1588,10 @@ types:
         type:
           switch-on: type.value
           cases:
+            '0': turn_summary_entry_type0
             '1': turn_summary_entry_type1
             '2': turn_summary_entry_type2
+            '3': turn_summary_entry_type3
             '4': turn_summary_entry_type4
   turn_summary:
     seq:
@@ -1605,7 +1665,7 @@ types:
             '".?AVCMidPlayer@@"': mid_player
             '".?AVCMidQuestLog@@"': mid_quest_log
             '".?AVCPlayerBuildings@@"': player_buildings
-            '".?AVCMidSpellCast@@"': double_id
+            '".?AVCMidSpellCast@@"': mid_spell_cast
             '".?AVCMidUnit@@"': mid_unit
             '".?AVCMidgardMapBlock@@"': midgard_map_block
             '".?AVCCapital@@"': capital
@@ -1615,10 +1675,10 @@ types:
             '".?AVCMidScenVariables@@"': mid_scen_variables
             '".?AVCMidStack@@"': mid_stack
             '".?AVCMidStackTemplate@@"': mid_stack_template
-            '".?AVCMidgardMap@@"': single_id
+            '".?AVCMidgardMap@@"': midgard_map
             '".?AVCMidItem@@"': mid_item
             '".?AVCMidTalismanCharges@@"': mid_talisman_charges
-            '".?AVCMidSpellEffects@@"': single_id
+            '".?AVCMidSpellEffects@@"': mid_spell_effects
             '".?AVCMidSubRace@@"': mid_subrace
             '".?AVCPlayerKnownSpells@@"': player_known_spells
             '".?AVCTurnSummary@@"': turn_summary
