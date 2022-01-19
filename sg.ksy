@@ -1541,8 +1541,6 @@ types:
         repeat-expr: entry_count.value
   turn_summary_entry_type0:
     seq:
-      - id: position
-        type: position
       - id: id_player2
         type: string_record('ID_PLAYER2')
       - id: id_spell
@@ -1553,8 +1551,6 @@ types:
         type: string_record('STR_STK_D')
   turn_summary_entry_type1:
     seq:
-      - id: position
-        type: position
       - id: id_player2
         type: string_record('ID_PLAYER2')
       - id: id_stk_a
@@ -1567,23 +1563,37 @@ types:
         type: string_record('STR_STK_D')
   turn_summary_entry_type2:
     seq:
-      - id: position
-        type: position
       - id: id_stk_d
         type: string_record('ID_STK_D')
       - id: str_stk_d
         type: string_record('STR_STK_D')
-  turn_summary_entry_type3: {}
-  turn_summary_entry_type4:
+  turn_summary_entry_type3:
     seq:
-      - id: position
-        type: position
+      - id: id_city
+        type: string_record('ID_CITY')
+  turn_summary_entry_type4: {}
+  turn_summary_entry_type5:
+    seq:
+      - id: id_stk_d
+        type: string_record('ID_STK_D')
+      - id: str_stk_d
+        type: string_record('STR_STK_D')
+  turn_summary_entry_type6:
+    seq:
+      - id: id_stk_d
+        type: string_record('ID_STK_D')
+      - id: str_stk_d
+        type: string_record('STR_STK_D')
+      - id: acquire
+        type: bool_record('ACQUIRE')
   turn_summary_entry:
     seq:
       - id: id_player
         type: string_record('ID_PLAYER')
       - id: type
         type: int_record('TYPE')
+      - id: position
+        type: position
       - id: data
         type:
           switch-on: type.value
@@ -1593,10 +1603,12 @@ types:
             '2': turn_summary_entry_type2
             '3': turn_summary_entry_type3
             '4': turn_summary_entry_type4
+            '5': turn_summary_entry_type5
+            '6': turn_summary_entry_type6
   turn_summary:
     seq:
       - id: summary_count
-        type: int_record('XxxxXXxxxx')
+        type: int_record('SxxxTS0000')
       - id: summary
         type: turn_summary_entry
         repeat: expr
